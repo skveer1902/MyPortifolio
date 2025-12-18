@@ -163,20 +163,27 @@ body {
 }
 
 /* Auth buttons in navbar - Hidden until hover */
+/* Auth buttons in navbar - Hidden until hover, far right */
 .nav-auth-btn {
+    position: absolute;
+    /* Remove from flow to place at far edge */
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     padding: 0.5rem 1.25rem;
     background: transparent;
-    color: rgba(255, 255, 255, 0.4);
+    color: transparent;
+    /* Invisible text by default */
     border: 1px solid transparent;
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-full) 0 0 var(--radius-full);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     display: inline-block;
-    margin-left: auto;
-    /* Push to far right if flex container allows */
     font-size: 0.9rem;
+    z-index: 1100;
+    /* Above nav content */
 }
 
 .nav-auth-btn:hover,
@@ -186,6 +193,12 @@ body {
     border-color: var(--accent-primary);
     box-shadow: 0 0 15px rgba(90, 95, 214, 0.3);
     outline: none;
+    right: 0;
+    /* Keep pinned to edge, or maybe move out slightly if desired, holding at 0 for now */
+    border-radius: var(--radius-full);
+    /* Round it back out on hover */
+    margin-right: 1rem;
+    /* Add some spacing from edge on hover for aesthetics? No, user said touch corner. */
 }
 
 .nav-auth-btn:active {
