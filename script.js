@@ -584,10 +584,47 @@ function checkObserver() {
     document.querySelectorAll('.animate-on-scroll').forEach(s => observer.observe(s));
 }
 
+// Auth Functions
+async function checkLoginStatus() {
+    try {
+        const res = await fetch('/api/auth/verify');
+        if (res.ok) {
+            isOwner = true;
+        } else {
+            isOwner = false;
+        }
+    } catch (e) {
+        console.log("Auth check skipped (local/static mode)");
+        isOwner = false;
+    }
+    renderAll();
+}
+
+async function logoutOwner() {
+    try {
+        await fetch('/api/auth/logout');
+    } catch (e) { console.error(e); }
+    isOwner = false;
+    renderAll();
+}
+
 // Interaction
 function setupEventListeners() {
     // Verify auth on load
     checkLoginStatus();
+
+    // Navigation Smooth Scroll
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
     // Login
     document.getElementById('login-btn').addEventListener('click', (e) => {
