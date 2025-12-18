@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subhash Krishna Veer Buddhi | AI Engineer & ML Researcher</title>
+    <meta name="description"
+        content="Portfolio of Subhash Krishna Veer Buddhi - AI Engineer, Machine Learning Researcher, and Full-Stack Developer.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css?v=3">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">SKVB<span style="color:var(--accent-primary)">.</span></a>
+            <div class="nav-menu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button id="login-btn" class="nav-auth-btn">Login</button>
+            </div>
+            <!-- Mobile Menu Button (Hidden logic to be handled by JS if needed, but keeping structure) -->
+            <div class="mobile-menu-btn" style="color:white; display:none;">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="app">
+        <section id="hero" class="hero">
+            <!-- Dynamic Hero Content -->
+        </section>
+
+        <section id="about" class="section">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">About Me <button id="edit-about-btn" class="section-pencil hidden"
+                        onclick="openEditor('about')"><i class="fas fa-pen"></i></button></h2>
+                <div class="about-content" id="about-content">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section section-alt">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">Education <button id="add-education-btn" class="section-pencil hidden"
+                        onclick="addItem('education')"><i class="fas fa-plus"></i></button></h2>
+                <div id="education-grid" class="education-grid">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">Experience <button id="add-experience-btn" class="section-pencil hidden"
+                        onclick="addItem('experience')"><i class="fas fa-plus"></i></button></h2>
+                <div id="experience-grid" class="experience-grid">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section section-alt">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">Projects <button id="add-projects-btn" class="section-pencil hidden"
+                        onclick="addItem('projects')"><i class="fas fa-plus"></i></button></h2>
+                <div id="projects-grid" class="projects-grid">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">Skills <button id="add-skills-btn" class="section-pencil hidden"
+                        onclick="addItem('skills')"><i class="fas fa-plus"></i></button></h2>
+                <div id="skills-grid" class="skills-grid">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="section section-alt">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">Certifications <button id="add-certifications-btn"
+                        class="section-pencil hidden" onclick="addItem('certifications')"><i
+                            class="fas fa-plus"></i></button></h2>
+                <div id="certifications-grid" class="certifications-grid">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">Let's Connect! <button id="edit-contact-btn" class="section-pencil hidden"
+                        onclick="openEditor('contact')"><i class="fas fa-pen"></i></button></h2>
+                <div class="contact-content" id="contact-content">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Subhash Krishna Veer Buddhi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Owner Login</h2>
+                <button class="modal-close close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="password-input" class="form-input" placeholder="Enter Password">
+                    <p id="login-error" class="form-error"></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="submit-login" class="modal-btn modal-btn-primary" style="width:100%">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Editor Modal -->
+    <div id="editor-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="editor-title" class="modal-title">Edit Content</h2>
+                <button class="modal-close" id="close-editor">&times;</button>
+            </div>
+            <div class="modal-body" id="editor-fields">
+                <!-- Dynamic input fields -->
+            </div>
+            <div class="modal-footer">
+                <button id="save-changes" class="modal-btn modal-btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmation</h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-message" style="color: var(--text-secondary); margin-bottom: 20px;">Are you sure?</p>
+                <div class="modal-footer">
+                    <button id="confirm-yes" class="modal-btn modal-btn-primary" style="background: #ef4444;">Yes,
+                        Delete</button>
+                    <button id="confirm-no" class="modal-btn modal-btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prompt Modal (Single Input) -->
+    <div id="prompt-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="prompt-title" class="modal-title">Enter Value</h3>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="prompt-input" class="form-input" placeholder="...">
+                <div class="modal-footer" style="margin-top: 20px;">
+                    <button id="prompt-ok" class="modal-btn modal-btn-primary">OK</button>
+                    <button id="prompt-cancel" class="modal-btn modal-btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js?v=3"></script>
+</body>
+
+</html>
