@@ -517,7 +517,7 @@ window.handleContactSubmit = function (e) {
 
     const formData = new FormData(form);
 
-    fetch("https://formsubmit.co/ajax/bskveer55@gmail.com", {
+    fetch("https://formsubmit.co/ajax/8e12f2fa0d8042e4851f85a076e865e4", {
         method: "POST",
         body: formData
     })
