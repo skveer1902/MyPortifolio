@@ -5,7 +5,8 @@ const defaultData = {
         title: "AI Engineer • Machine Learning Researcher • Full-Stack Developer",
         image: "assets/profile.jpg",
         links: {
-            resume: "#", // Placeholder
+            resume: "https://drive.google.com/file/d/1SkS6x7WPKm8V24tSGFd2VYqTX0RN6C0D/view?usp=sharing",
+
             contact: "#contact",
             projects: "#projects"
         }
@@ -209,6 +210,13 @@ function init() {
         saveState();
     }
 
+    // Ensure persistent Resume link
+    if (portfolioData.hero.links.resume === "#" || portfolioData.hero.links.resume === "") {
+        portfolioData.hero.links.resume = "https://drive.google.com/file/d/1SkS6x7WPKm8V24tSGFd2VYqTX0RN6C0D/view?usp=sharing";
+        saveState();
+    }
+
+
     renderAll();
     setupEventListeners();
     checkObserver();
@@ -255,8 +263,9 @@ function renderHero() {
                 </h1>
                 <p class="hero-subtitle fade-in-delay-2">${portfolioData.hero.title}</p>
                 <div class="hero-buttons fade-in-delay-2">
-                    <a href="${portfolioData.hero.links.resume}" class="btn btn-primary">Resume</a>
+                    <a href="${portfolioData.hero.links.resume}" target="_blank" class="btn btn-primary">Resume</a>
                     <a href="${portfolioData.hero.links.contact}" class="btn btn-secondary">Contact Me</a>
+
                     <a href="${portfolioData.hero.links.projects}" class="btn btn-outline">View Work</a>
                 </div>
             </div>
